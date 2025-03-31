@@ -1,0 +1,12 @@
+{
+  "__README__": "Please upload these files to Pinata:",
+  "steps": [
+    "1. Create a new folder called 'metadata' on Pinata",
+    "2. Upload these three files:",
+    "   - 1.json (Silver Achievement)",
+    "   - 2.json (Gold Achievement)",
+    "   - 3.json (Platinum Achievement)",
+    "3. Get the new CID for the metadata folder",
+    "4. Update .env with the new CID"
+  ]
+}

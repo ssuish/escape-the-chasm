@@ -1,0 +1,21 @@
+{
+  "name": "template-react-ts",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {
+    "phaser": "^3.88.0",
+    "react": "workspace:*",
+    "react-dom": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "vite": "^5.3.1"
+  },
+  "scripts": {
+    "build": "yarn workspaces run build",
+    "dev": "yarn workspaces run dev"
+  }
+}

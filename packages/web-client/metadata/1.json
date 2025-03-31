@@ -1,0 +1,19 @@
+{
+    "name": "Silver Achievement - Pentakill",
+    "description": "Defeat 5 enemies in Escape The Chasm",
+    "image": "ipfs://bafkreihhhe4dxqh323iscfeqckkfl6szdjwjpvy72xwnq3hwlqyik32tsa",
+    "attributes": [
+        {
+            "trait_type": "Type",
+            "value": "Combat"
+        },
+        {
+            "trait_type": "Tier",
+            "value": "Silver"
+        },
+        {
+            "trait_type": "Requirement",
+            "value": "Defeat 5 enemies"
+        }
+    ]
+}
