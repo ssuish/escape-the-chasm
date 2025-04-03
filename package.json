@@ -11,11 +11,12 @@
     "react-dom": "workspace:*"
   },
   "devDependencies": {
+    "concurrently": "^9.1.2",
     "typescript": "^5.2.2",
     "vite": "^5.3.1"
   },
   "scripts": {
     "build": "yarn workspaces run build",
-    "dev": "yarn workspaces run dev"
+    "dev": "concurrently \"yarn workspace game-client dev\" \"yarn workspace web-client start\""
   }
 }

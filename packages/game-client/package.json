@@ -1,5 +1,5 @@
 {
-    "name": "template-react-ts",
+    "name": "game-client",
     "description": "A Phaser 3 TypeScript project template that demonstrates React communication and uses Vite for bundling.",
     "version": "1.0.3",
     "repository": {
