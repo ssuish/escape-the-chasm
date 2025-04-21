@@ -1,64 +1,54 @@
-# Escape The Chasm - NFT Achievement System
+# React + TypeScript + Vite
 
-This project implements NFT achievements for the Escape The Chasm game on the CORE blockchain testnet.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Setup
+Currently, two official plugins are available:
 
-1. Install dependencies:
-```bash
-npm install
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+
+```js
+export default tseslint.config({
+  extends: [
+    // Remove ...tseslint.configs.recommended and replace with this
+    ...tseslint.configs.recommendedTypeChecked,
+    // Alternatively, use this for stricter rules
+    ...tseslint.configs.strictTypeChecked,
+    // Optionally, add this for stylistic rules
+    ...tseslint.configs.stylisticTypeChecked,
+  ],
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
 ```
 
-2. Create a .env file with your private key:
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
+
+export default tseslint.config({
+  plugins: {
+    // Add the react-x and react-dom plugins
+    'react-x': reactX,
+    'react-dom': reactDom,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended typescript rules
+    ...reactX.configs['recommended-typescript'].rules,
+    ...reactDom.configs.recommended.rules,
+  },
+})
 ```
-PRIVATE_KEY=your_wallet_private_key_here
-```
-
-3. Deploy the contract to CORE testnet (1114):
-```bash
-npx hardhat run scripts/deploy.js --network coreTestnet
-```
-
-4. After deployment, copy the contract address and add it to your .env file:
-```
-REACT_APP_CONTRACT_ADDRESS=your_deployed_contract_address
-```
-
-## Smart Contract Details
-
-The AchievementNFT contract (`src/contracts/AchievementNFT.sol`) implements:
-- ERC721 standard for NFTs
-- Achievement minting for completing Level 1
-- Achievement tracking per wallet
-- Base URI setting for NFT metadata
-
-## Development
-
-### Testing on CORE Testnet (1114)
-
-1. Get some test CORE from the faucet
-2. Deploy using your wallet's private key
-3. Test minting functionality through the dashboard
-
-### Frontend Integration
-
-The dashboard (`src/components/Dashboard.js`) integrates with the smart contract to:
-- Display earned NFT achievements
-- Show achievement status
-- Track player progress
-
-### Contract Interaction
-
-The web3 integration (`src/web3/contracts/achievement.js`) provides methods for:
-- Minting new achievements
-- Checking achievement status
-- Retrieving NFT metadata
-
-## Moving to Mainnet
-
-After testing on testnet:
-
-1. Update `hardhat.config.js` with mainnet settings
-2. Deploy using mainnet private key
-3. Update contract address in environment variables
-4. Test thoroughly before announcing
