@@ -19,6 +19,9 @@ const TINT_REPEAT = 2;
 const TINT_YOYO = true;
 
 export class Player {
+    getCenter() {
+        throw new Error("Method not implemented.");
+    }
     private jumpForce: number;
     private speed: number;
     private sprite: Physics.Matter.Sprite;

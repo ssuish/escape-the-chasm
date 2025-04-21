@@ -3,6 +3,7 @@ import { Player } from "../entities/Player";
 import { PlayerController } from "../entities/PlayerController";
 import CollisionIdentifier from "../logic/CollisionIdentifier";
 import { EnemyFootman } from "../entities/EnemyFootman";
+import { EnemyFactory } from "./EnemyFactory";
 import PlayerHealthBar from "../UIComponents/PlayerHealthBar";
 import { EventBus } from "../EventBus";
 import { Achievement, achievements } from "../logic/PlayerAchievement";
@@ -183,7 +184,8 @@ export class BaseLevel extends Scene {
     }
 
     spawnEnemies() {
-        if (this.enemiesSpawned >= this.numberOfEnemies) {
+        if (this.enemiesSpawned >= this.numberOfEnemies) 
+        {
             this.enemySpawnTimer.remove(); // Stop the timer if the limit is reached
             return;
         }
@@ -193,7 +195,8 @@ export class BaseLevel extends Scene {
         objectsLayer?.objects.forEach((objData) => {
             const { x = 0, y = 0, width = 0, name } = objData;
 
-            if (name === "enemySpawn") {
+            if (name === "enemySpawn") 
+            {
                 const spawnCount = Math.random() < 0.5 ? 1 : 2; // 50% chance to spawn 1 or 2 enemies
 
                 for (let i = 0; i < spawnCount; i++) {
@@ -230,7 +233,8 @@ export class BaseLevel extends Scene {
 
                     this.enemyFootman = enemyFootman;
 
-                    if (enemyFootman) {
+                    if (enemyFootman) 
+                    {
                         // TODO: Add methods to handle enemy behavior
                     }
 

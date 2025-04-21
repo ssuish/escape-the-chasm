@@ -5,13 +5,15 @@ export const gameConfig = {
     jumpForce: -12,
     maxJumps: 2,
     jumpCount: 0,
-    scale: {
+    scale: 
+    {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
         width: 1024,
         height: 768,
     },
-    playerConfig: {
+    playerConfig: 
+    {
         speed: 5,
         maxHealth: 100,
         jumpForce: -12,
@@ -19,12 +21,14 @@ export const gameConfig = {
         maxJumps: 2,
         jumpCount: 0,
     },
-    basicGunConfig: {
+    basicGunConfig: 
+    {
         fireRate: 300,
         bulletSpeed: 20,
         bulletDamage: 10,
     },
-    enemyFootmanConfig: {
+    enemyFootmanConfig: 
+    {
         speed: 5,
         maxHealth: 30,
         damage: 3,

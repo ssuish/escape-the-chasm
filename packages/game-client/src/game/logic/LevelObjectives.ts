@@ -31,6 +31,27 @@ export const levelObjectives: { [key: string]: LevelData } = {
     },
     //add more levels here
     
+    level2: 
+    {
+      name: "Second Escape",
+      stars: 
+      [
+        {
+          objective: "Defeat 15 enemies",
+          completed: false,
+
+        },
+        {
+          objective: "Complete the stage with 50% health or above",
+          completed: false,
+        },
+        {
+          objective: "Complete the stage with 25% health or above",
+          completed: false,
+        },
+      ],
+    },
+
     /*level2: {
       name: "Second Escape",
       stars: [

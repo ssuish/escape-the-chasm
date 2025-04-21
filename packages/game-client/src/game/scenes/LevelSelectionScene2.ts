@@ -1,6 +1,6 @@
 import { Scene } from "phaser";
 import { EventBus } from "../EventBus";
-import { BackButton, PlayButton, NextLevelButton } from "../UIComponents/UIButton";
+import { BackButton, PlayButton } from "../UIComponents/UIButton";
 import { LevelManager } from '../UIComponents/LevelManager'; 
 import { levelObjectives } from "../logic/LevelObjectives";
 
@@ -12,7 +12,7 @@ export class LevelSelection extends Scene {
     levelManager: LevelManager;
 
     constructor() {
-        super("LevelSelection");
+        super("LevelSelection2");
     }
 
     preload(){
@@ -31,18 +31,14 @@ export class LevelSelection extends Scene {
             }
         }
         this.levelManager = new LevelManager(this, this.cameras.main.centerX, this.cameras.main.centerY);
-        this.levelManager.drawLevelPortrait('level1'); // Display level1 by default
+        this.levelManager.drawLevelPortrait('level2'); // Display level2 by default
         
         new BackButton(this, 15, 10, () => {
             this.changeScene("MainMenu");
         });
 
-        new NextLevelButton(this, 850, 10, () => {
-            this.changeScene("LevelSelection2");
-        });
-
         new PlayButton(this, 512, 530, () => {
-            this.changeScene('Level1');
+            this.changeScene('Level2');
         }).setOrigin(0.5).setDepth(1000);
 
         EventBus.emit("current-scene-ready", this);

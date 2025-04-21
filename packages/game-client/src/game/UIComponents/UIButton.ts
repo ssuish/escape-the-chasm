@@ -115,6 +115,30 @@ export class BackButton extends GameObjects.Text {
     }
 }
 
+export class NextLevelButton extends GameObjects.Text {
+    constructor(scene: Scene, x: number, y: number, callback: () => void) {
+        super(scene, x, y, ">>>", {
+            fontFamily: 'Rubik Dirt', fontSize: 48, color: '#d3d3d3',
+            stroke: '#000000', strokeThickness: 3
+        });
+
+        this.setInteractive()
+            .on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
+                this.setTint(0xdedede);
+                this.setStroke('000000', 5)
+            })
+            .on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
+                this.setTint(0xffffff);
+                this.setStroke('000000', 3)
+            })
+            .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, callback)     
+            .on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
+                this.setTint(0xffffff);
+            });
+            scene.add.existing(this);
+    }
+}
+
 //export class PauseButton extends UIButton {
     //constructor(scene: Scene, x: number, y: number, callback: () => void) {
         //super(scene, x, y, "Pause", callback, { backgroundColor: "#ffff00" });
