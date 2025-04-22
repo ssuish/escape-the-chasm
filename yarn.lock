@@ -253,7 +253,7 @@
   dependencies:
     js-base64 "^3.7.2"
 
-"@0xsequence/waas@>= 2.2.13":
+"@0xsequence/waas@>= 2.2.13", "@0xsequence/waas@^2.3.9":
   version "2.3.9"
   resolved "https://registry.yarnpkg.com/@0xsequence/waas/-/waas-2.3.9.tgz#3a7f00d4bf19fa492ac908a53292be9c3c25ebc4"
   integrity sha512-0yxvRkUW7kjkzmPZyaAEQSMJ+tK2DPXEZXnFWSqL3ncXidAYmWKjs10NQfjPpNZGGlTN7n9OfQ2KLda4kuG/Iw==

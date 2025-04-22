@@ -23,7 +23,7 @@ export const config: any = createConfig("waas", {
   projectAccessKey: projectAccessKey,
   chainIds,
   defaultChainId,
-  appName: "Kit Starter",
+  appName: "Escape The Chasm",
   waasConfigKey: waasConfigKey,
   googleClientId: googleClientId,
   appleClientId: appleClientId,
