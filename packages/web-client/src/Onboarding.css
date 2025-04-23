@@ -1,0 +1,51 @@
+body {
+    background-image: url('../src/assets/bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow-y: auto;
+    min-height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 50px;
+    padding-left: 100px;
+}
+  
+.logo-container {
+    margin-bottom: 0px;
+}
+  
+.subtitle {
+    font-size: 2em;
+    font-weight: 700;
+    color: #4379D5; /* Light gray */
+    margin-bottom: 0;
+}
+  
+.main-title {
+    font-size: 4em;
+    font-weight: bold;
+    margin: 0;
+    padding-bottom: 10px;
+}
+  
+.tagline {
+    font-size: 1.5em;
+    color: #d3d3d3; /* Slightly lighter gray */
+    font-weight: 500;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding-bottom: 20px;
+}
+
+.video-demo {
+    display: flex;
+    padding-bottom: 20px;
+    margin: 0;
+    padding-left: 250px;
+}
+  
