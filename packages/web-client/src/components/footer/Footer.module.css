@@ -1,0 +1,23 @@
+.footer {
+    height: 50px;
+    display: flex;
+    background-color: black;
+    justify-content: space-between;
+    padding: 10px 50px;
+}
+
+.logo {
+    height: 40px;
+}
+
+.copyright {
+    display: flex;
+    align-items: center;
+}
+.copyright:hover {
+    text-decoration: underline;
+}
+
+.copyright span {
+    padding-left: 10px;
+}
