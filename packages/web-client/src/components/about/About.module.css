@@ -1,0 +1,27 @@
+.about {
+    padding: 30px 50px;
+    width: 100%;
+    height: 600px;
+}
+
+.header {
+    font-family: 'Alexandria', sans-serif;
+    font-weight: bold;
+    left: 0;
+    right: 0;
+    margin: 0;
+    font-size: larger;
+    padding-bottom: 20px;
+}
+
+.content {
+    font-family: 'Alexandria';
+    font-size: 18px;
+    display: flex;
+    line-height: 2;
+}
+
+.video {
+    padding-left: 50px;
+}
+
