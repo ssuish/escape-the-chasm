@@ -1,7 +1,9 @@
-.about {
-    padding: 30px 50px;
+.roadmap {
     width: 100vw;
     height: 100vh;
+    display: list-item;
+    padding: 50px;
+    padding: 30px 50px;
 }
 
 .header {
@@ -20,8 +22,3 @@
     display: flex;
     line-height: 2;
 }
-
-.video {
-    padding-left: 50px;
-}
-
