@@ -26,12 +26,40 @@
     margin: 0;
 }
 
+@media (max-width: 768px) {
+    .subtitle {
+      font-size: 1.5em;
+    }
+  }
+
+@media (max-width: 553px) {
+    .subtitle {
+      font-size: 1em; 
+    }
+  }
+
 .maintitle {
     font-size: 4em;
     font-weight: bolder;
     margin: 0;
     font-family: Alexandria, sans-serif;
 }
+
+@media (max-width: 768px) {
+    .maintitle {
+      font-size: 3em;
+    }
+  }
+@media (max-width: 553px) {
+    .maintitle {
+      font-size: 2.2em; 
+    }
+  }
+@media (max-width: 429px) {
+    .maintitle {
+      font-size: 26px; 
+    }
+  } 
 
 .tagline {
     font-size: 1.5em;
@@ -42,7 +70,16 @@
     padding-bottom: 20px;
     font-family: Alexandria, sans-serif;
 }
-
+@media (max-width: 553px) {
+    .tagline {
+      font-size: 1.25em; 
+    }
+  }
+@media (max-width: 429px) {
+    .tagline {
+      font-size: 16px; 
+    }
+  } 
 .button {
     color: #ffffff;
     justify-content: space-between;
