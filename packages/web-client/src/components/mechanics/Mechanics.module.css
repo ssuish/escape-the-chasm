@@ -1,7 +1,7 @@
-.team {
+.mechanics {
+    background: url('../../assets/menu.png') no-repeat center/cover;
     width: 100vw;
     height: 100vh;
-    display: list-item;
     padding: 50px;
     padding: 30px 50px;
     scroll-snap-align: center;
@@ -16,11 +16,4 @@
     margin: 0;
     font-size: larger;
     padding-bottom: 20px;
-}
-
-.content {
-    font-family: 'Alexandria';
-    font-size: 18px;
-    display: flex;
-    line-height: 2;
 }

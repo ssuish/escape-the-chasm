@@ -4,6 +4,8 @@
     background-color: black;
     justify-content: space-between;
     padding: 10px 50px;
+    scroll-snap-align: start;
+    scroll-behavior: smooth;
 }
 
 .logo {

@@ -2,9 +2,10 @@
     background: url('../../assets/bg2.png') no-repeat center/cover;
     width: 100vw;
     height: 100vh;
-    display: list-item;
     padding: 50px;
     padding: 30px 50px;
+    scroll-snap-align: center;
+    scroll-behavior: smooth;
 }
 
 .header {
@@ -17,14 +18,17 @@
     padding-bottom: 20px;
 }
 
-.content {
-    font-family: 'Alexandria';
-    font-size: 18px;
+.socials {
     display: flex;
-    line-height: 2;
+    justify-content: center;
 }
 
-.video {
-    padding-left: 50px;
+.fb {
+    border: none;
+    overflow: hidden;
+    margin: 0;
+    width: 540px;
+    height: 640px;;
+    padding: 20px;
 }
 

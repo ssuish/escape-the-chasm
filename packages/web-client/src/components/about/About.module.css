@@ -1,7 +1,10 @@
 .about {
+    background: url('../../assets/level_bg_cave.png') no-repeat center/cover;
     padding: 30px 50px;
     width: 100vw;
     height: 100vh;
+    scroll-snap-align: center;
+    scroll-behavior: smooth;
 }
 
 .header {
