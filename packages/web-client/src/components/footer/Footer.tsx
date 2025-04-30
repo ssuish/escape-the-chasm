@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from './Footer.module.css';
 import { FaRegCopyright } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
@@ -34,13 +34,24 @@ const Footer = () => {
 
             {modal && (
             <div className={styles.modal}>
-                <div className={styles.overlay} onClick={toggleModal}>
+                <div className={styles.overlay}>
                     <div className={styles.modalcontent}>
-                        <h2>Follow our Socials</h2>
+                        <h2>Contact us here!</h2>
+                        <form className={styles.form}>
+                            <input type='email' className={styles.email} id="email" placeholder='Email (e.g. yourname@email.com)' required/>
+                            <input type='text' className={styles.subject}id="subject" placeholder='Subject' required/>
+                            <textarea wrap='hard' id="description" className={styles.desc}placeholder='Enter your description' required/>
+                            <button className={styles.submit}>Submit</button>
+                        </form>
+                        
                         <div className={styles.socials}>
-                            <a href="https://www.facebook.com/profile.php?id=61573907524618" target='_blank'><FaFacebook size={50}/></a> 
-                            <a href="https://x.com/EscapeTheChasm" target='_blank'><BsTwitterX size={50}/></a>
-                        <button className={styles.closemodal} onClick={toggleModal}><IoMdClose size={30}/></button>
+                            <h2>Follow our socials!</h2>
+                            <div className={styles.icons}>
+                                <a href="https://www.facebook.com/profile.php?id=61573907524618" target='_blank'><FaFacebook size={50}/></a> 
+                                <a href="https://x.com/EscapeTheChasm" target='_blank'><BsTwitterX size={50}/></a>
+                                <button className={styles.closemodal} onClick={toggleModal}><IoMdClose size={30}/></button>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
