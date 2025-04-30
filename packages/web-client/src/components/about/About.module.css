@@ -1,7 +1,10 @@
 .about {
+    background: url('../../assets/level_bg_cave.png') no-repeat center/cover;
     padding: 30px 50px;
     width: 100vw;
     height: 100vh;
+    scroll-snap-align: center;
+    scroll-behavior: smooth;
 }
 
 .header {
@@ -23,6 +26,12 @@
 
 @media (max-width: 1366px) {
     .content {
+        flex-direction: column;
+        align-items: center; 
+        text-align: center;
+    }
+
+    .header {
         flex-direction: column;
         align-items: center; 
         text-align: center;

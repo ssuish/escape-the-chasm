@@ -1,6 +1,6 @@
 
 import styles from './Hero.module.css';
-//import { FaPlay } from "react-icons/fa";
+import { FaPlay } from "react-icons/fa";
 
 import { useOpenConnectModal } from "@0xsequence/connect";
 

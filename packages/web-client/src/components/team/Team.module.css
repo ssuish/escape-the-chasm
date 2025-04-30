@@ -4,6 +4,8 @@
     display: list-item;
     padding: 50px;
     padding: 30px 50px;
+    scroll-snap-align: center;
+    scroll-behavior: smooth;
 }
 
 .header {
