@@ -60,7 +60,7 @@ body.activemodal {
 
 .modalcontent {
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: #000000;
@@ -73,15 +73,63 @@ body.activemodal {
     font-family: 'Alexandria', sans-serif;
     font-size: 18px;
     font-weight: bold;
+    padding-bottom: 20px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    font-family: 'Alexandria', sans-serif;
+    font-size: .8rem;
+    padding-bottom: 20px;
+}
+.form input {
+    padding: 5px 10px;
+    border: 0;
+    background-color: transparent;
+}
+.form input:focus{
+    outline: none;
+}
+input.email, input.subject {
+    border-bottom: 2px solid #ffffff;
+    padding-top: 10px;
+}
+.desc {
+    height: 200px;
+    align-items: flex-start;
+    padding: 10px;
+    resize: none;
+}
+.desc:focus {
+    outline: none;
+}
+.submit {
+    font-size: 1rem;
+    font-weight: bold;
+    border: 2px solid #ffffff;
+    width: 100px;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.submit:hover {
+    cursor: pointer;
+    color: rgba(203, 203, 203, 0.8);
+    border-color: rgba(203, 203, 203, 0.8);;
 }
 
 .socials {
-    display: flex;
-    justify-content: space-evenly;
-    padding: 20px;
+    padding: 10px;
+    border-top: 2px solid #ffffff;
 }
 .socials a:hover {
     color: rgba(203, 203, 203, 0.8);
+}
+.icons {
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .closemodal {
