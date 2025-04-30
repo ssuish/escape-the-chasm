@@ -1,25 +1,93 @@
+body.activemodal {
+    overflow-y: hidden;
+}
+
 .footer {
-    height: 50px;
-    display: flex;
+    height: 40vh;
+    display: block;
     background-color: black;
-    justify-content: space-between;
-    padding: 10px 50px;
+    padding: 50px;
     scroll-snap-align: start;
     scroll-behavior: smooth;
 }
 
 .logo {
-    height: 40px;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.user {
+    display: flex;
+    justify-content: center;
+}
+.user p {
+    padding: 20px 20px;
+}
+.user p:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .copyright {
     display: flex;
+    text-align: center;
     align-items: center;
+    justify-content: center;
+    padding-top: 50px;
 }
 .copyright:hover {
     text-decoration: underline;
+    cursor: pointer;
 }
-
 .copyright span {
     padding-left: 10px;
+}
+
+.modal, .overlay {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+}
+
+.overlay {
+    background: rgba(49, 49, 49, 0.7);
+}
+
+.modalcontent {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #000000;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 600px;
+    min-width: 300px;
+}
+.modalcontent h2 {
+    font-family: 'Alexandria', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.socials {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px;
+}
+.socials a:hover {
+    color: rgba(203, 203, 203, 0.8);
+}
+
+.closemodal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 7px;
+    cursor: pointer;
 }
