@@ -1,0 +1,113 @@
+.walletSelector {
+  position: relative;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.activeWallet {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background-color: #222;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.walletInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.walletOptions {
+  position: absolute;
+  width: 100%;
+  background-color: #2a2a2a;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+.walletList {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.walletOption {
+  padding: 12px 15px;
+  border-bottom: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.activeOption {
+  background-color: rgba(0, 128, 255, 0.1);
+  border-left: 3px solid #0080ff;
+}
+
+.walletActions {
+  display: flex;
+  gap: 8px;
+}
+
+.addWalletButton {
+  width: 100%;
+  padding: 10px;
+  background-color: #333;
+  border: none;
+  border-radius: 0 0 8px 8px;
+  color: white;
+  cursor: pointer;
+}
+
+.addWalletButton:hover {
+  background-color: #444;
+}
+
+.connectButton {
+  width: 100%;
+  padding: 12px;
+  background-color: #0080ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.connectButton:hover {
+  background-color: #0066cc;
+}
+
+.button {
+  color: #ffffff;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-left: auto;
+  margin-right: auto;
+  padding: auto;
+  padding: 0.6em 1.2em;
+  display: flex;
+  font-family: "Alexandria", sans-serif;
+  font-weight: bold;
+  border: 3px solid white;
+  font-size: 1.3em;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  justify-content: space-between;
+  align-items: center;
+  width: 200px;
+}
+.button:hover {
+  border-color: #4379d5;
+  color: #4379d5;
+  transition: border-color 0.25s;
+}
+.button:focus,
+.button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
