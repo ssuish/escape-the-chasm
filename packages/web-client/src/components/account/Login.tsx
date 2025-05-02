@@ -19,7 +19,7 @@ function Login() {
   useEffect(() => {
     if (isConnected) {
       // Uncomment the next line if you want automatic redirection
-      // navigate("/CharacterSelect");
+      //navigate("/CharacterSelect");
     }
   }, [isConnected, navigate]);
 

@@ -7,7 +7,7 @@
 const Level = () => {
     return(
         <>
-          
+          <h1>LEVEL MAP</h1>
         </>
     )
 }

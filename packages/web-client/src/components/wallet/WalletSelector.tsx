@@ -45,10 +45,6 @@ const WalletSelector: React.FC = () => {
                       wallet.isActive ? styles.activeOption : ""
                     }`}
                   >
-                    <span>
-                      {wallet.name}: {wallet.address.slice(0, 6)}...
-                      {wallet.address.slice(-4)}
-                    </span>
                     <div className={styles.walletActions}>
                       {!wallet.isActive && (
                         <button
@@ -67,16 +63,17 @@ const WalletSelector: React.FC = () => {
                       >
                         Disconnect
                       </button>
+                      <button 
+                        className={styles.button}
+                        onClick={handleConnect}
+                      >
+                        Connect Another Wallet
+                      </button>
                     </div>
                   </div>
                 ))}
               </div>
-              <button
-                className={styles.addWalletButton}
-                onClick={handleConnect}
-              >
-                Connect Another Wallet
-              </button>
+              
             </div>
           )}
         </>
