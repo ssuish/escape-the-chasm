@@ -67,7 +67,7 @@ const WalletSelector: React.FC = () => {
                         className={styles.button}
                         onClick={handleConnect}
                       >
-                        Connect Another Wallet
+                        Connect Another Account
                       </button>
                     </div>
                   </div>
@@ -79,7 +79,7 @@ const WalletSelector: React.FC = () => {
         </>
       ) : (
         <button className={styles.connectButton} onClick={handleConnect}>
-          Connect Wallet
+          Login/Sign Up
         </button>
       )}
     </div>

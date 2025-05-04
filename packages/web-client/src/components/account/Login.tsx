@@ -13,13 +13,13 @@ function Login() {
   const activeAddress = activeWallet?.address || wallets[0]?.address || "N/A";
 
   const handlePlay = () => {
-    navigate("/CharacterSelect");
+    navigate("/character-select");
   };
 
   useEffect(() => {
     if (isConnected) {
       // Uncomment the next line if you want automatic redirection
-      //navigate("/CharacterSelect");
+      // navigate("/character-select");
     }
   }, [isConnected, navigate]);
 
