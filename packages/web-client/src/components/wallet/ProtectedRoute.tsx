@@ -1,13 +1,12 @@
 import { Navigate } from "react-router-dom";
-import { useWallets } from "@0xsequence/connect";
+import useWalletConnection from "../../hooks/useWalletConnection";
 
 type ProtectedRouteProps = {
   children: React.ReactNode;
 };
 
 const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
-  const { wallets } = useWallets();
-  const isConnected = wallets.length > 0;
+  const { isConnected } = useWalletConnection();
 
   if (!isConnected) {
     return <Navigate to="/" replace />;

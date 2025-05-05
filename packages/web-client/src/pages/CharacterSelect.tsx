@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useWallets } from "@0xsequence/connect";
 import WalletSelector from "../components/wallet/WalletSelector";
+import useWalletConnection from "../hooks/useWalletConnection";
 
 const characters = [
   { id: 1, name: "Warrior", description: "Strong and brave fighter." },
@@ -14,23 +14,27 @@ const CharacterSelect: React.FC = () => {
     null
   );
   const navigate = useNavigate();
-  const { wallets } = useWallets();
-  const isConnected = wallets.length > 0;
-
-  // Redirect if no wallet is connected
-  useEffect(() => {
-    if (!isConnected) {
-      navigate("/");
-    }
-  }, [isConnected, navigate]);
+  const { isConnected, activeAddress } = useWalletConnection();
 
   const handleSelect = (id: number) => {
     setSelectedCharacter(id);
   };
 
+  const handleStartGame = () => {
+    const character = characters.find(
+      (char) => char.id === selectedCharacter
+    )?.name;
+    console.log(
+      `Player ${activeAddress.slice(0, 6)}...${activeAddress.slice(
+        -4
+      )} starting game as ${character}`
+    );
+    navigate("/play-game");
+  };
+
   // If not connected, don't render the page content
   if (!isConnected) {
-    return null; // This will briefly show before redirecting
+    return null; 
   }
 
   return (
@@ -55,6 +59,10 @@ const CharacterSelect: React.FC = () => {
       </div>
 
       <h1>Select Your Character</h1>
+      <p>
+        Playing as: {activeAddress.slice(0, 6)}...{activeAddress.slice(-4)}
+      </p>
+
       <div style={{ display: "flex", gap: "20px" }}>
         {characters.map((character) => (
           <div
@@ -94,14 +102,7 @@ const CharacterSelect: React.FC = () => {
               marginTop: "10px",
               fontSize: "16px",
             }}
-            onClick={() => {
-              // Handle character confirmation/game start here
-              console.log(
-                `Starting game with ${
-                  characters.find((char) => char.id === selectedCharacter)?.name
-                }`
-              );
-            }}
+            onClick={handleStartGame}
           >
             Start Game
           </button>

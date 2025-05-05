@@ -1,28 +1,27 @@
 import React, { useState } from "react";
-import { useOpenConnectModal, useWallets } from "@0xsequence/connect";
 import styles from "../wallet/WalletSelector.module.css";
 import { FaCaretDown, FaCaretUp, FaWallet } from "react-icons/fa";
+import useWalletConnection from "../../hooks/useWalletConnection";
 
 const WalletSelector: React.FC = () => {
   const [showWalletOptions, setShowWalletOptions] = useState(false);
-  const { setOpenConnectModal } = useOpenConnectModal();
-  const { wallets, setActiveWallet, disconnectWallet } = useWallets();
-
-  // Find the active wallet
-  const activeWallet = wallets.find((wallet) => wallet.isActive);
-  const hasWallets = wallets.length > 0;
+  const {
+    isConnected,
+    activeWallet,
+    wallets,
+    connectWallet,
+    disconnectWallet,
+    switchActiveWallet,
+    connectionStatus,
+  } = useWalletConnection();
 
   const toggleWalletOptions = () => {
     setShowWalletOptions(!showWalletOptions);
   };
 
-  const handleConnect = () => {
-    setOpenConnectModal(true);
-  };
-
   return (
     <div className={styles.walletSelector}>
-      {hasWallets && activeWallet ? (
+      {isConnected && activeWallet ? (
         <>
           <div className={styles.activeWallet} onClick={toggleWalletOptions}>
             <div className={styles.walletInfo}>
@@ -50,7 +49,7 @@ const WalletSelector: React.FC = () => {
                         <button
                           className={styles.button}
                           onClick={() => {
-                            setActiveWallet(wallet.address);
+                            switchActiveWallet(wallet.address);
                             setShowWalletOptions(false);
                           }}
                         >
@@ -63,23 +62,25 @@ const WalletSelector: React.FC = () => {
                       >
                         Disconnect
                       </button>
-                      <button 
-                        className={styles.button}
-                        onClick={handleConnect}
-                      >
+                      <button className={styles.button} onClick={connectWallet}>
                         Connect Another Account
                       </button>
                     </div>
                   </div>
                 ))}
               </div>
-              
             </div>
           )}
         </>
       ) : (
-        <button className={styles.connectButton} onClick={handleConnect}>
-          Login/Sign Up
+        <button
+          className={styles.connectButton}
+          onClick={connectWallet}
+          disabled={connectionStatus === "connecting"}
+        >
+          {connectionStatus === "connecting"
+            ? "Connecting..."
+            : "Connect Wallet"}
         </button>
       )}
     </div>
