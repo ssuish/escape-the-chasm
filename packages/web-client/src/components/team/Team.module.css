@@ -6,6 +6,7 @@
     padding: 30px 50px;
     scroll-snap-align: center;
     scroll-behavior: smooth;
+    background: linear-gradient(rgb(0, 0, 0), rgb(59, 59, 59));
 }
 
 .header {
