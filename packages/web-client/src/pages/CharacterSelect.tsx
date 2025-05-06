@@ -4,9 +4,8 @@ import WalletSelector from "../components/wallet/WalletSelector";
 import useWalletConnection from "../hooks/useWalletConnection";
 
 const characters = [
-  { id: 1, name: "Warrior", description: "Strong and brave fighter." },
-  { id: 2, name: "Mage", description: "Master of magical arts." },
-  { id: 3, name: "Rogue", description: "Stealthy and cunning adventurer." },
+  { id: 1, name: "Artur", art: "../src/assets/MaleMC_ETC.png" },
+  { id: 2, name: "Arturia", art: "../src/assets/FemaleMC_ETC.png"  },
 ];
 
 const CharacterSelect: React.FC = () => {
@@ -38,73 +37,42 @@ const CharacterSelect: React.FC = () => {
   }
 
   return (
-    <div
-      style={{
-        padding: "20px",
-        fontFamily: "Arial, sans-serif",
-        position: "relative",
-      }}
-    >
-      {/* Wallet selector in top right corner */}
-      <div
-        style={{
-          position: "absolute",
-          top: "10px",
-          right: "20px",
-          zIndex: 10,
-          maxWidth: "300px",
-        }}
-      >
+    <div className="p-10 overflow-y-hidden bg-[url(../src/assets/level_select.png)] bg-no-repeat bg-cover h-screen w-screen -z-1 absolute">
+      <div className="absolute top-10 right-20 mw-300">
         <WalletSelector />
       </div>
-
-      <h1>Select Your Character</h1>
-      <p>
-        Playing as: {activeAddress.slice(0, 6)}...{activeAddress.slice(-4)}
-      </p>
-
-      <div style={{ display: "flex", gap: "20px" }}>
-        {characters.map((character) => (
-          <div
-            key={character.id}
-            onClick={() => handleSelect(character.id)}
-            style={{
-              border:
+      <div className="text-center">
+        <h1 className="font-['Alexandria'] pb-5 font-extrabold">
+          Choose Your Character
+        </h1>
+        <div className="flex gap-30 justify-center">
+          {characters.map((character) => (
+            <div
+              key={character.id}
+              onClick={() => handleSelect(character.id)}
+              className={`border ${
                 selectedCharacter === character.id
-                  ? "2px solid blue"
-                  : "1px solid gray",
-              borderRadius: "8px",
-              padding: "10px",
-              cursor: "pointer",
-              textAlign: "center",
-              width: "150px",
-            }}
-          >
-            <h2>{character.name}</h2>
-            <p>{character.description}</p>
-          </div>
-        ))}
+                  ? "border-5 border-blue-500"
+                  : "border-5 border-gray-400"
+              } 
+                  bg-linear-to-b from-gray-500 to-gray-900 bg-no-repeat bg-fixed p-5 h-120 w-90 text-center cursor-pointer rounded-lg`}
+            >
+              <img src={character.art} className="max-h-full w-auto" alt="character art"/>
+            </div>
+          ))}
+        </div>
       </div>
       {selectedCharacter && (
-        <div style={{ marginTop: "20px" }}>
-          <h2>You selected:</h2>
-          <p>
+        <div className="mt-4 text-center">
+          <p className="font-['Alexandria'] text-5xl font-extrabold pb-3">
             {characters.find((char) => char.id === selectedCharacter)?.name}
           </p>
           <button
-            style={{
-              backgroundColor: "#4CAF50",
-              color: "white",
-              padding: "10px 20px",
-              border: "none",
-              borderRadius: "5px",
-              cursor: "pointer",
-              marginTop: "10px",
-              fontSize: "16px",
-            }}
+            className="bg-[#4CAF50] px-5 py-3 border-none rounded-md cursor-pointer mt-1 text-2xl font-['Alexandria'] 
+            font-extrabold hover:opacity-75"
             onClick={handleStartGame}
           >
-            Start Game
+            PLAY
           </button>
         </div>
       )}
