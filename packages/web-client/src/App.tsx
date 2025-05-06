@@ -1,23 +1,49 @@
 import "./App.css";
-import { useOpenConnectModal } from "@0xsequence/connect";
-import Onboarding from "./Onboarding";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import Onboarding from "./pages/Onboarding";
+import Level from "./pages/Level";
+import TrophyRoom from "./components/trophy/TrophyRoom";
+import CharacterSelect from "./pages/CharacterSelect";
+import { SequenceConnect } from "@0xsequence/connect";
+import { SequenceCheckoutProvider } from "@0xsequence/checkout";
+import { config } from "./config";
+import ProtectedRoute from "./components/wallet/ProtectedRoute";
 
 function App() {
-  const { setOpenConnectModal, openConnectModalState } = useOpenConnectModal();
-
-  const handleConnect = () => {
-    setOpenConnectModal(true); 
-  };
-
   return (
-    <>
-      <div>
-        <Onboarding />
-      </div>
-      <button onClick={handleConnect}>Connect Wallet</button>
-
-      {openConnectModalState && <div>Connect modal is open!</div>}
-    </>
+    <SequenceConnect config={config}>
+      <SequenceCheckoutProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Onboarding />} />
+            <Route
+              path="/play-game"
+              element={
+                <ProtectedRoute>
+                  <Level />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/trophy-room"
+              element={
+                <ProtectedRoute>
+                  <TrophyRoom />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/character-select"
+              element={
+                <ProtectedRoute>
+                  <CharacterSelect />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </Router>
+      </SequenceCheckoutProvider>
+    </SequenceConnect>
   );
 }
 

@@ -1,0 +1,49 @@
+.about {
+    background: url('../../assets/level_bg_cave.png') no-repeat center/cover;
+    padding: 30px 50px;
+    width: 100vw;
+    height: 100vh;
+    scroll-snap-align: center;
+    scroll-behavior: smooth;
+}
+
+.header {
+    font-family: 'Alexandria', sans-serif;
+    font-weight: bold;
+    left: 0;
+    right: 0;
+    margin: 0;
+    font-size: larger;
+    padding-bottom: 20px;
+}
+
+.content {
+    font-family: 'Alexandria';
+    font-size: 18px;
+    display: flex;
+    line-height: 2;
+}
+
+@media (max-width: 1366px) {
+    .content {
+        flex-direction: column;
+        align-items: center; 
+        text-align: center;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: center; 
+        text-align: center;
+    }
+
+    .video {
+        padding-left: 0;
+        padding-top: 20px;
+    }
+}
+
+.video {
+    padding-left: 50px;
+}
+

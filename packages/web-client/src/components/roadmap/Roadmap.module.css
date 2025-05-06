@@ -1,0 +1,121 @@
+.roadmap {
+    width: 100vw;
+    height: 100vh;
+    padding: 30px 50px;
+    scroll-snap-align: center;
+    scroll-behavior: smooth;
+    background-color:black;
+    position: relative;
+}
+
+.header {
+    font-family: 'Alexandria', sans-serif;
+    font-weight: bold;
+    left: 0;
+    right: 0;
+    margin: 0;
+    font-size: larger;
+}
+
+.line {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.roadline {
+    border-top-width: 5px;
+    border-top-color: #ffffff;
+    width: 65%;
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.quartercircles {
+    display: flex; 
+    position: absolute; 
+    top: 50%; 
+    transform: translateY(-50%);
+    z-index: 2;
+    justify-content: space-between;
+    width: 70%;
+}
+.circle {
+    width: 60px;
+    height: 60px; 
+    border-radius: 50%;
+    background-color: rgb(80, 80, 80); 
+    color: rgb(255, 255, 255); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px; 
+    z-index: 3;
+}
+.circle span h1 {
+    font-size: 1.5em;
+}
+.circle:hover {
+    box-shadow: 0 0 10px #ffffff;
+    cursor: pointer;
+}
+
+.cards {
+    z-index: 4;
+    font-size: .8em;
+}
+.cards header {
+    font-size: 1.4em;
+}
+.cards p {
+    font-weight: 600;
+}
+.cards li {
+    padding-left: 10px;
+    font-weight: 300;
+    font-size: .9em;
+}
+
+.card1 {
+    width: 30vw;
+    height: 30vh;
+    background-color: rgb(80, 80, 80);
+    border-radius: 20px;
+    position: absolute;
+    bottom: 55%;
+    left: 50px;
+    padding: 15px;
+}
+.card2 {
+    width: 30vw;
+    height: 30vh;
+    background-color: rgb(80, 80, 80);
+    border-radius: 20px;
+    position: absolute;
+    top: 55%;
+    left: 25%;
+    padding: 15px;
+}
+.card3 {
+    width: 30vw;
+    height: 30vh;
+    background-color: rgb(80, 80, 80);
+    border-radius: 20px;
+    position: absolute;
+    bottom: 55%;
+    right: 25%;
+    padding: 15px;
+}
+.card4 {
+    width: 30vw;
+    height: 30vh;
+    background-color: rgb(80, 80, 80);
+    border-radius: 20px;
+    position: absolute;
+    top: 55%;
+    right: 50px;
+    padding: 15px;
+}
