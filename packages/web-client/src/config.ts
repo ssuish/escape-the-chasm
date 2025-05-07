@@ -1,5 +1,6 @@
 import { createConfig } from "@0xsequence/connect";
 import { chainIdFromString, chainIdsFromString } from "./utils/chainIdUtils";
+import { createClient } from "@supabase/supabase-js";
 
 const projectAccessKey = import.meta.env.VITE_PROJECT_ACCESS_KEY;
 const waasConfigKey = import.meta.env.VITE_WAAS_CONFIG_KEY;
@@ -30,3 +31,12 @@ export const config: any = createConfig("waas", {
   //appleRedirectURI: appleRedirectURI,
   //walletConnectProjectId: walletConnectId,
 });
+
+const supabaseURL: string = import.meta.env.VITE_SUPABASE_URL || "";
+const supabaseAnonKey: string = import.meta.env.VITE_SUPABASE_ANON_KEY || "";
+console.log("supabaseURL", supabaseURL);
+console.log("supabaseAnonKey", supabaseAnonKey);
+
+const supabase = createClient(supabaseURL, supabaseAnonKey);
+
+export default supabase;

@@ -1,37 +1,51 @@
 import React, { useEffect } from "react";
 import styles from "../hero/Hero.module.css";
 import { FaPlay } from "react-icons/fa";
-import { useWallets } from "@0xsequence/connect";
-import WalletSelector from "../wallet/WalletSelector";
 import { useNavigate } from "react-router-dom";
+import useWalletConnection from "../../hooks/useWalletConnection";
 
 function Login() {
   const navigate = useNavigate();
-  const { wallets } = useWallets();
-  const isConnected = wallets.length > 0;
-  const activeWallet = wallets.find((wallet) => wallet.isActive);
-  const activeAddress = activeWallet?.address || wallets[0]?.address || "N/A";
+  const { isConnected, activeAddress, connectionStatus, connectWallet } =
+    useWalletConnection();
 
   const handlePlay = () => {
-    navigate("/CharacterSelect");
+    navigate("/character-select");
   };
 
   useEffect(() => {
     if (isConnected) {
-      // Uncomment the next line if you want automatic redirection
-      //navigate("/CharacterSelect");
+      // Auto-redirect when connected
+      //navigate("/character-select");
     }
   }, [isConnected, navigate]);
 
   return (
     <div className={styles.loginContainer}>
-      <WalletSelector />
+
+      {!isConnected && connectionStatus !== "connecting" && (
+        <div className={styles.connectButtonContainer}>
+          <button className={styles.button} onClick={connectWallet}>
+            <FaPlay style={{ marginRight: 10 }} />
+            Connect Account
+          </button>
+        </div>
+      )}
 
       {isConnected && (
         <div className={styles.playButtonContainer}>
           <button className={styles.button} onClick={handlePlay}>
             <FaPlay style={{ height: 20 }} />
             Play as {activeAddress.slice(0, 6)}...{activeAddress.slice(-4)}
+          </button>
+        </div>
+      )}
+
+      {connectionStatus === "connecting" && (
+        <div className={styles.connectingMessage}>
+          <button className={styles.button} onClick={handlePlay}>
+            <FaPlay style={{ height: 20 }} />
+            Connecting...
           </button>
         </div>
       )}
