@@ -4,6 +4,10 @@ import TrophyRoomButton from '../components/trophy/TrophyRoomButton';
 import OptionsButton from '../components/options/OptionsButton';
 //Profile
 
+import React from "react";
+import useWalletConnection from "../hooks/useWalletConnection";
+import WalletSelector from "../components/wallet/WalletSelector";
+
 const Level = () => {
     return(
         <>
