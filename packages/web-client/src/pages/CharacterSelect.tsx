@@ -1,46 +1,73 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import WalletSelector from "../components/wallet/WalletSelector";
 import { IoMdClose } from "react-icons/io";
 import useWalletConnection from "../hooks/useWalletConnection";
-
-const characters = [
-  { id: 1, name: "Artur", art: "../src/assets/MaleMC_ETC.png" },
-  { id: 2, name: "Arturia", art: "../src/assets/FemaleMC_ETC.png" },
-];
+import supabase from "../config";
+import AvatarCard from "../components/layout/AvatarCard";
+import { Avatar } from "../types/Avatar";
 
 const CharacterSelect: React.FC = () => {
+  // Initialize with empty array instead of undefined
+  const [avatars, setAvatars] = useState<Avatar[]>([]);
+  const [fetchError, setFetchError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAvatars = async () => {
+      setLoading(true);
+      try {
+        const { data, error } = await supabase
+          .from("avatars")
+          .select()
+          .order("id", { ascending: true });
+
+        if (error) {
+          console.error("Error fetching avatars:", error);
+          setFetchError("Could not fetch avatars");
+          setAvatars([]);
+          return;
+        }
+
+        if (data) {
+          setAvatars(data);
+          setFetchError(null);
+        }
+      } catch (error) {
+        console.error("Exception fetching avatars:", error);
+        setFetchError("An unexpected error occurred");
+        setAvatars([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAvatars();
+  }, []);
+
   const [selectedCharacter, setSelectedCharacter] = useState<number | null>(
     null
   );
   const navigate = useNavigate();
   const { isConnected, activeAddress } = useWalletConnection();
 
-  const [modal, setModal] = useState(false);
+   const [modal, setModal] = useState(false);
 
-  const toggleModal = () => {
-    setModal(!modal);
-  };
+   const toggleModal = () => {
+     setModal(!modal);
+   };
 
-  if (modal) {
-    document.body.classList.add("overflow-y-hidden");
-  } else {
-    document.body.classList.remove("overflow-y-hidden");
-  }
+   if (modal) {
+     document.body.classList.add("overflow-y-hidden");
+   } else {
+     document.body.classList.remove("overflow-y-hidden");
+   }
 
   const handleSelect = (id: number) => {
     setSelectedCharacter(id);
   };
 
   const handleStartGame = () => {
-    const character = characters.find(
-      (char) => char.id === selectedCharacter
-    )?.name;
-    console.log(
-      `Player ${activeAddress.slice(0, 6)}...${activeAddress.slice(
-        -4
-      )} starting game as ${character}`
-    );
     navigate("/play-game");
   };
 
@@ -54,38 +81,43 @@ const CharacterSelect: React.FC = () => {
       className="p-10 overflow-y-hidden bg-[url(../src/assets/level_select.png)] bg-no-repeat 
       bg-cover h-screen w-screen -z-1 absolute"
     >
+      {fetchError && (
+        <p className="text-red-500 bg-black p-2 rounded">{fetchError}</p>
+      )}
       <div className="absolute top-10 right-20 mw-300">
         <WalletSelector />
       </div>
       <div className="text-center">
-        <h1 className="font-['Alexandria'] pb-5 font-extrabold">
+        <h1 className="font-['Alexandria'] text-4xl pb-5 font-extrabold">
           Choose Your Character
         </h1>
-        <div className="flex gap-30 justify-center">
-          {characters.map((character) => (
-            <div
-              key={character.id}
-              onClick={() => handleSelect(character.id)}
-              className={`border ${
-                selectedCharacter === character.id
-                  ? "border-5 border-blue-500"
-                  : "border-5 border-gray-400"
-              } 
-                  bg-linear-to-b from-gray-500 to-gray-900 bg-no-repeat bg-fixed p-5 h-120 w-90 text-center cursor-pointer rounded-lg`}
-            >
-              <img
-                src={character.art}
-                className="max-h-full w-auto"
-                alt="character art"
+
+        {loading ? (
+          <p className="text-white bg-black p-4 inline-block rounded">
+            Loading characters...
+          </p>
+        ) : avatars.length > 0 ? (
+          <div className="flex gap-30 justify-center">
+            {avatars.map((avatar: Avatar) => (
+              <AvatarCard
+                key={avatar.id}
+                avatar={avatar}
+                isSelected={selectedCharacter === avatar.id}
+                onSelect={() => handleSelect(avatar.id)}
               />
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <p className="text-white bg-black p-4 inline-block rounded">
+            No characters available
+          </p>
+        )}
       </div>
-      {selectedCharacter && (
+
+      {selectedCharacter && avatars.length > 0 && (
         <div className="mt-4 text-center">
           <p className="font-['Alexandria'] text-5xl font-extrabold pb-3">
-            {characters.find((char) => char.id === selectedCharacter)?.name}
+            {avatars.find((a) => a.id === selectedCharacter)?.name}
           </p>
           <button
             className="bg-[#4CAF50] px-5 py-3 border-none rounded-md cursor-pointer mt-1 text-2xl font-['Alexandria'] 

@@ -27,7 +27,7 @@ function Login() {
         <div className={styles.connectButtonContainer}>
           <button className={styles.button} onClick={connectWallet}>
             <FaPlay style={{ marginRight: 10 }} />
-            Connect Wallet
+            Connect Account
           </button>
         </div>
       )}
