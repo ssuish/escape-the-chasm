@@ -16,7 +16,7 @@ const devTeam = [
         image: ""
     },
     {
-        name: "DanPe",
+        name: "Meroulei",
         role: "2D Artist, Animator",
         image: ""
     },
