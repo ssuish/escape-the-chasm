@@ -8,8 +8,16 @@ import { SequenceConnect } from "@0xsequence/connect";
 import { SequenceCheckoutProvider } from "@0xsequence/checkout";
 import { config } from "./config";
 import ProtectedRoute from "./components/wallet/ProtectedRoute";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 
 function App() {
+  useEffect(() => {
+    AOS.init({ duration: 2000, repeat: true });
+    AOS.refresh();
+  }, []);
   return (
     <SequenceConnect config={config}>
       <SequenceCheckoutProvider>
@@ -44,6 +52,7 @@ function App() {
         </Router>
       </SequenceCheckoutProvider>
     </SequenceConnect>
+    
   );
 }
 
