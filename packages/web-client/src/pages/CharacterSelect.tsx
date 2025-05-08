@@ -1,60 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import WalletSelector from "../components/wallet/WalletSelector";
 import useWalletConnection from "../hooks/useWalletConnection";
-import supabase from "../config";
 import AvatarCard from "../components/layout/AvatarCard";
 import { Avatar } from "../types/Avatar";
 import UserAccount from "../components/layout/UserAccount";
+import { useAvatars } from "../hooks/useAvatars";
 
 const CharacterSelect: React.FC = () => {
-  // Initialize with empty array instead of undefined
-  const [avatars, setAvatars] = useState<Avatar[]>([]);
-  const [fetchError, setFetchError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchAvatars = async () => {
-      setLoading(true);
-      try {
-        const { data, error } = await supabase
-          .from("avatars")
-          .select()
-          .order("id", { ascending: true });
-
-        if (error) {
-          console.error("Error fetching avatars:", error);
-          setFetchError("Could not fetch avatars");
-          setAvatars([]);
-          return;
-        }
-
-        if (data) {
-          setAvatars(data);
-          setFetchError(null);
-        }
-      } catch (error) {
-        console.error("Exception fetching avatars:", error);
-        setFetchError("An unexpected error occurred");
-        setAvatars([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchAvatars();
-  }, []);
-
   const [selectedCharacter, setSelectedCharacter] = useState<number | null>(
     null
   );
   const { isConnected, activeAddress } = useWalletConnection();
+  const { avatars, loading, error: fetchError } = useAvatars();
 
   const handleSelect = (id: number) => {
     setSelectedCharacter(id);
   };
 
+  // If not connected or still checking, don't render the page content
+  if (!isConnected || !activeAddress) {
+    return null;
+  }
+
   // If not connected, don't render the page content
-  if (!isConnected) {
+  if (!isConnected || !activeAddress) {
     return null;
   }
 
@@ -101,7 +70,10 @@ const CharacterSelect: React.FC = () => {
           <p className="font-['Alexandria'] text-5xl font-extrabold pb-3">
             {avatars.find((a) => a.id === selectedCharacter)?.name}
           </p>
-          <UserAccount />
+          <UserAccount
+            selectedCharacterId={selectedCharacter}
+            walletAddress={activeAddress}
+          />
         </div>
       )}
     </div>
