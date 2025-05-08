@@ -34,8 +34,6 @@ export const config: any = createConfig("waas", {
 
 const supabaseURL: string = import.meta.env.VITE_SUPABASE_URL || "";
 const supabaseAnonKey: string = import.meta.env.VITE_SUPABASE_ANON_KEY || "";
-console.log("supabaseURL", supabaseURL);
-console.log("supabaseAnonKey", supabaseAnonKey);
 
 const supabase = createClient(supabaseURL, supabaseAnonKey);
 
