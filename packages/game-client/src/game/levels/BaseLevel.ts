@@ -3,7 +3,8 @@ import { Player } from "../entities/Player";
 import { PlayerController } from "../entities/PlayerController";
 import CollisionIdentifier from "../logic/CollisionIdentifier";
 import { EnemyFootman } from "../entities/EnemyFootman";
-import { EnemyFactory } from "./EnemyFactory";
+import { EnemyGreenEye } from "../entities/EnemyGreenEye";
+//import { EnemyFactory } from "./EnemyFactory";
 import PlayerHealthBar from "../UIComponents/PlayerHealthBar";
 import { EventBus } from "../EventBus";
 import { Achievement, achievements } from "../logic/PlayerAchievement";
@@ -31,6 +32,7 @@ export class BaseLevel extends Scene {
     playerController: PlayerController;
     player: Player;
     enemyFootman: EnemyFootman;
+    enemyGreenEye: EnemyGreenEye;
     private obstacles!: CollisionIdentifier;
     private numberOfEnemies: number;
     private enemySpawnTimer!: Phaser.Time.TimerEvent;
@@ -46,11 +48,13 @@ export class BaseLevel extends Scene {
         this.numberOfEnemies = numberOfEnemies;
     }
 
-    init() {
+    init() 
+    {
         this.obstacles = new CollisionIdentifier();
     }
 
-    preload() {
+    preload() 
+    {
         this.load.setPath(TILESET_PATH);
 
         this.load.image(TILESET_KEY, TILESET_IMAGE).on("loaderror", () => {
@@ -62,9 +66,11 @@ export class BaseLevel extends Scene {
             .on("loaderror", () => {
                 console.error(`Failed to load tilemap.`);
             });
-
+        
+        this.load.image("enemy_green_eye", "assets/enemy/newEnemy_idle/enemy_idle2.png");
         Player.preload(this);
         EnemyFootman.preload(this);
+        EnemyGreenEye.preload(this);
     }
 
     create() {
@@ -75,11 +81,13 @@ export class BaseLevel extends Scene {
             "industrial_tilesheet",
             TILESET_KEY
         );
-        if (tileset) {
+        if (tileset) 
+        {
             const wall = this.map.createLayer("Wall", tileset);
             const elevator = this.map.createLayer("Elevator", tileset);
 
-            if (wall) {
+            if (wall) 
+            {
                 wall.setCollisionByProperty({ collides: true });
                 this.matter.world.convertTilemapLayer(wall);
             }
@@ -183,7 +191,80 @@ export class BaseLevel extends Scene {
         });
     }
 
-    spawnEnemies() {
+    spawnEnemies() 
+    {
+        if (this.enemiesSpawned >= this.numberOfEnemies) {
+            this.enemySpawnTimer.remove(); // Stop the timer if the limit is reached
+            return;
+        }
+    
+        const objectsLayer = this.map.getObjectLayer("Objects");
+        let footmanSpawnCount = 0; // Counter to track EnemyFootman spawns
+    
+        objectsLayer?.objects.forEach((objData) => {
+            const { x = 0, y = 0, width = 0, name } = objData;
+    
+            if (name === "enemySpawn") {
+                const spawnCount = Math.random() < 0.5 ? 1 : 2; // 50% chance to spawn 1 or 2 enemies
+    
+                for (let i = 0; i < spawnCount; i++) {
+                    const randomX = x + Math.random() * width;
+    
+                    // Spawn EnemyFootman for the first two spawns, then spawn EnemyGreenEye
+                    if (footmanSpawnCount < 2) 
+                    {
+                        const enemySprite = this.matter.add.sprite(
+                            randomX,
+                            y,
+                            "enemy_footman",
+                            0,
+                            { label: "enemy-footman" }
+                        );
+                        enemySprite.name = "enemy-footman";
+    
+                        const enemyFootman = new EnemyFootman(
+                            enemySprite,
+                            this.obstacles,
+                            this.playerSprite,
+                            this
+                        );
+                        this.enemyFootman = enemyFootman;
+                       
+                        footmanSpawnCount++; // Increment the counter
+                    } 
+                    else 
+                    {
+                        /*const enemySprite2 = this.matter.add.sprite(
+                            randomX,
+                            y,
+                            "enemy_green_eye",
+                            0,
+                            { label: "enemy-green-eye" }
+                        );
+                        //enemySprite.setDepth(1);
+                        enemySprite2.name = "enemy-green-eye";
+    
+                        const enemyGreenEye = new EnemyGreenEye(
+                            enemySprite2,
+                            this.obstacles,
+                            this.playerSprite,
+                            this
+                        );
+                        this.enemyGreenEye = enemyGreenEye;*/
+                       
+    
+                        // Reset the counter to allow more EnemyFootman spawns
+                        footmanSpawnCount = 0;
+                    }
+    
+                    this.enemiesSpawned++;
+                    console.log("Enemy spawn count: ", this.enemiesSpawned);
+                }
+            }
+        });
+    }
+
+    /*spawnEnemies() {
         if (this.enemiesSpawned >= this.numberOfEnemies) 
         {
             this.enemySpawnTimer.remove(); // Stop the timer if the limit is reached
@@ -199,14 +280,16 @@ export class BaseLevel extends Scene {
             {
                 const spawnCount = Math.random() < 0.5 ? 1 : 2; // 50% chance to spawn 1 or 2 enemies
 
-                for (let i = 0; i < spawnCount; i++) {
+                for (let i = 0; i < spawnCount; i++) 
+                {
                     const randomX = x + Math.random() * width;
+                    //enemy footman
                     const enemySprite = this.matter.add.sprite(
                         randomX,
                         y,
                         "enemy_footman",
-                        0,
-                        { label: "enemy-footman" }
+                        0,  
+                        { label: "enemy-footman" },
                     );
 
                     // Set additional properties for the sprite
@@ -219,7 +302,8 @@ export class BaseLevel extends Scene {
                         return;
                     }
 
-                    if (!this.playerSprite) {
+                    if (!this.playerSprite) 
+                    {
                         console.error("Player sprite is missing");
                         return;
                     }
@@ -237,13 +321,31 @@ export class BaseLevel extends Scene {
                     {
                         // TODO: Add methods to handle enemy behavior
                     }
+                    
+                    //enemy green eye
+                    const enemySprite2 = this.matter.add.sprite(
+                        randomX,
+                        y,
+                        "enemy_green_eye",
+                        0,  
+                        { label: "enemy-green-eye" },
+                    );
+                    enemySprite2.name = "enemy-green-eye";
+
+                    const enemyGreenEye = new EnemyGreenEye(
+                        enemySprite2,
+                        this.obstacles,
+                        this.playerSprite,
+                        this
+                    );
+                    this.enemyGreenEye = enemyGreenEye;
 
                     this.enemiesSpawned++;
                     console.log("Enemy spawn count: ", this.enemiesSpawned);
                 }
             }
         });
-    }
+    }*/
 
     incrementDefeatedEnemies() {
         this.defeatedEnemies++;
@@ -287,6 +389,7 @@ export class BaseLevel extends Scene {
         // Clean up player and enemy objects
         this.player?.cleanup();
         this.enemyFootman?.destroy();
+        this.enemyGreenEye?.destroy();
 
         // Reset necessary states
         this.defeatedEnemies = 0;
@@ -339,6 +442,7 @@ export class BaseLevel extends Scene {
             this.playerController?.update(deltaTime);
             this.playerHealthBar.update();
             this.enemyFootman?.update(deltaTime);
+            this.enemyGreenEye?.update(deltaTime);
         }
     }
 
@@ -346,6 +450,7 @@ export class BaseLevel extends Scene {
         // Clean up player and enemy objects
         this.player?.cleanup();
         this.enemyFootman?.destroy();
+        this.enemyGreenEye?.destroy();
 
         // Reset necessary states
         this.defeatedEnemies = 0;

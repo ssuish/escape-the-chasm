@@ -157,6 +157,12 @@ export class Player {
             }
         }
 
+        if (gameObject instanceof Physics.Matter.Sprite) {
+            if (gameObject.name === "enemy-green-eye") {
+                this.stateMachine.setState("enemyHit");
+            }
+        }
+
         // TODO: Add collision handling for other game objects
         // if (gameObject instanceof Enemy) {
         //     this.stateMachine.setState("enemyHit");

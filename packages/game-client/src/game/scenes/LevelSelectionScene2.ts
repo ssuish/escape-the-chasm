@@ -1,13 +1,13 @@
 import { Scene } from "phaser";
 import { EventBus } from "../EventBus";
-import { BackButton, PlayButton } from "../UIComponents/UIButton";
+import { BackButton, PlayButton, NextLevelButton } from "../UIComponents/UIButton";
 import { LevelManager } from '../UIComponents/LevelManager'; 
 import { levelObjectives } from "../logic/LevelObjectives";
 
 // Import all levels dynamically
 //const levels = require(`../levels/${}`);
 
-export class LevelSelection extends Scene {
+export class LevelSelection2 extends Scene {
     selectedLevelKey: string | null = null;
     levelManager: LevelManager;
 
@@ -34,7 +34,12 @@ export class LevelSelection extends Scene {
         this.levelManager.drawLevelPortrait('level2'); // Display level2 by default
         
         new BackButton(this, 15, 10, () => {
-            this.changeScene("MainMenu");
+            this.changeScene("LevelSelection");
+        });
+
+        new NextLevelButton(this, 850, 10, () => 
+        {
+            this.changeScene("LevelSelection3");
         });
 
         new PlayButton(this, 512, 530, () => {

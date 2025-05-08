@@ -37,7 +37,49 @@ export const levelObjectives: { [key: string]: LevelData } = {
       stars: 
       [
         {
-          objective: "Defeat 15 enemies",
+          objective: "Defeat all enemies",
+          completed: false,
+
+        },
+        {
+          objective: "Complete the stage with 25% health or above",
+          completed: false,
+        },
+        {
+          objective: "Complete the stage with 50% health or above",
+          completed: false,
+        },
+      ],
+    },
+
+    level3: 
+    {
+      name: "Third Escape",
+      stars: 
+      [
+        {
+          objective: "Defeat all enemies",
+          completed: false,
+
+        },
+        {
+          objective: "Complete the stage with 30% health or above",
+          completed: false,
+        },
+        {
+          objective: "Complete the stage with 60% health or above",
+          completed: false,
+        },
+      ],
+    },
+
+    level4: 
+    {
+      name: "Fourth Escape",
+      stars: 
+      [
+        {
+          objective: "Defeat all enemies",
           completed: false,
 
         },
@@ -46,7 +88,28 @@ export const levelObjectives: { [key: string]: LevelData } = {
           completed: false,
         },
         {
-          objective: "Complete the stage with 25% health or above",
+          objective: "Complete the stage with 75% health or above",
+          completed: false,
+        },
+      ],
+    },
+
+    level5: 
+    {
+      name: "Final Escape",
+      stars: 
+      [
+        {
+          objective: "Defeat all enemies",
+          completed: false,
+
+        },
+        {
+          objective: "Complete the stage with 90% health",
+          completed: false,
+        },
+        {
+          objective: "Complete the stage without enemies falling",
           completed: false,
         },
       ],

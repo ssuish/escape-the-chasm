@@ -1,9 +1,9 @@
 import { BaseLevel } from "./BaseLevel";
 import { EventBus } from "../EventBus";
 
-export class Level2 extends BaseLevel {
+export class Level4 extends BaseLevel {
     constructor() {
-        super("Level2", 15); // Adjust the enemy number as needed
+        super("Level4", 20); // Adjust the enemy number as needed
     }
 
     preload(): void {

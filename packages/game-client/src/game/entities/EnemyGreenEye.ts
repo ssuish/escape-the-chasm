@@ -9,8 +9,8 @@ const MAX_HEALTH = gameConfig.enemyFootmanConfig.maxHealth;
 const DAMAGE = gameConfig.enemyFootmanConfig.damage;
 const SCALE = gameConfig.enemyFootmanConfig.scale;
 const SPEED = gameConfig.enemyFootmanConfig.speed;
-const JUMP_FORCE = gameConfig.enemyFootmanConfig.jumpForce;
-const MIN_NORMALIZED_DIRECTION_Y = 0.1;
+//const JUMP_FORCE = gameConfig.enemyFootmanConfig.jumpForce;
+//const MIN_NORMALIZED_DIRECTION_Y = 0.1;
 const KNOCKBACK_VELOCITY = 10;
 
 export class EnemyGreenEye extends BaseEnemy {
@@ -26,12 +26,12 @@ export class EnemyGreenEye extends BaseEnemy {
         scene: Scene
     ) {
         const instanceID =
-            "enemy-footman-" + (sprite.body as MatterJS.BodyType).id;
+            "enemy-green-eye" + (sprite.body as MatterJS.BodyType).id;
 
         super(instanceID, sprite, obstacles, player, scene);
 
         this.speed = SPEED;
-        this.jumpForce = JUMP_FORCE;
+        //this.jumpForce = JUMP_FORCE;
         this.maxHealth = MAX_HEALTH;
         this.health = MAX_HEALTH;
         this.damage = DAMAGE;
@@ -74,8 +74,8 @@ export class EnemyGreenEye extends BaseEnemy {
         scene.load
             .atlas(
                 "newEnemy_idle",
-                "newEnemy_idle/enemy_idle.png",
-                "newEnemy_idle/enemy_idle.json"
+                "newEnemy_idle/enemy_idle2.png",
+                "newEnemy_idle/newEnemy_idle.json"
             )
             .on("loaderror", () => {
                 console.error(`Failed to load atlas.`);
@@ -87,8 +87,8 @@ export class EnemyGreenEye extends BaseEnemy {
         scene.load
             .atlas(
                 "newEnemy_atk",
-                "newEnemy_atk/enemy_attack.png",
-                "newEnemy_atk/enemy_attack.json"
+                "newEnemy_atk/enemy_attack2.png",
+                "newEnemy_atk/newEnemy_attack.json"
             )
             .on("loaderror", () => {
                 console.error(`Failed to load atlas.`);
@@ -101,8 +101,8 @@ export class EnemyGreenEye extends BaseEnemy {
     protected createAnimation(): void {
         this.sprite.anims.create({
             key: "patrol",
-            frames: this.sprite.anims.generateFrameNames("enemy_idle", {
-                prefix: "enemy_idle_0",
+            frames: this.sprite.anims.generateFrameNames("enemy_idle2", {
+                prefix: "enemy_idle2_0",
                 start: 0,
                 end: 3,
                 suffix: ".png",
@@ -113,8 +113,8 @@ export class EnemyGreenEye extends BaseEnemy {
         console.log("Enemy animation created.");
         this.sprite.anims.create({
             key: "attack",
-            frames: this.sprite.anims.generateFrameNames("enemy_attack", {
-                prefix: "enemy_attack_0",
+            frames: this.sprite.anims.generateFrameNames("enemy_attack2", {
+                prefix: "enemy_attack2_0",
                 start: 0,
                 end: 6,
                 suffix: ".png",
@@ -127,8 +127,10 @@ export class EnemyGreenEye extends BaseEnemy {
 
     protected handleCollisionWith(
         gameObject: Phaser.GameObjects.GameObject | undefined
-    ): void {
-        this.Jump();
+    ): 
+    void 
+    {
+        //this.Jump();
 
         if (gameObject instanceof Physics.Matter.TileBody) {
             this.isTouchingGround = true;
@@ -136,7 +138,7 @@ export class EnemyGreenEye extends BaseEnemy {
 
         if (gameObject instanceof Physics.Matter.Sprite) {
             if (gameObject.name === "player") {
-                console.log("Player collided with enemy");
+                console.log("Player collided with " + gameObject.name);
                 this.stateMachine.setState("attack");
                 this.sprite.play("attack");
             }
@@ -154,7 +156,8 @@ export class EnemyGreenEye extends BaseEnemy {
         this.stateMachine.setState("patrol");
     }
 
-    private Jump() {
+    /*private Jump() 
+    {
         const player = this.getPlayer();
         console.log("Jump method called");
 
@@ -162,10 +165,13 @@ export class EnemyGreenEye extends BaseEnemy {
             player &&
             typeof player.x === "number" &&
             typeof player.y === "number"
-        ) {
+        ) 
+        {
             this.lastPlayerX = player.x;
             this.lastPlayerY = player.y;
-        } else {
+        } 
+        else 
+        {
             console.error(
                 "Player object or its position is undefined, using last known position"
             );
@@ -198,7 +204,7 @@ export class EnemyGreenEye extends BaseEnemy {
 
         this.isTouchingGround = false;
         this.stateMachine.setState("patrol");
-    }
+    }*/
 
     protected enemyHitOnEnter() {
         console.log("New Enemy health: ", this.health);
@@ -226,7 +232,7 @@ export class EnemyGreenEye extends BaseEnemy {
         type: string;
         damage: number;
     }) {
-        if (projectileHit.type === "enemy-footman") {
+        if (projectileHit.type === "enemy-green-eye") {
             if (projectileHit.id === this.id) {
                 this.health -= projectileHit.damage;
                 this.scene.sound.play("metalHit");

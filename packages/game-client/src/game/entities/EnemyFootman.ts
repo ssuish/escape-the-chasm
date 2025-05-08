@@ -8,7 +8,7 @@ import { gameConfig } from "../config/gameConfig";
 const MAX_HEALTH = gameConfig.enemyFootmanConfig.maxHealth;
 const DAMAGE = gameConfig.enemyFootmanConfig.damage;
 const SCALE = gameConfig.enemyFootmanConfig.scale;
-const SPEED = gameConfig.enemyFootmanConfig.speed;
+const SPEED = gameConfig.enemyFootmanConfig.speed * 0.7;
 const JUMP_FORCE = gameConfig.enemyFootmanConfig.jumpForce;
 const MIN_NORMALIZED_DIRECTION_Y = 0.1;
 const KNOCKBACK_VELOCITY = 10;
@@ -145,8 +145,43 @@ export class EnemyFootman extends BaseEnemy {
         return;
     }
 
-    protected patrolOnEnter() {
+    protected patrolOnEnter() 
+    {
         console.log("Enemy patrolling");
+        // Continuously follow the player with a follow distance threshold
+        /*this.scene.time.addEvent({
+            delay: 100, // Update direction every 100ms
+            callback: () => 
+            {
+                const player = this.getPlayer();
+                if (player && typeof player.x === "number") {
+                    const directionX = player.x - this.sprite.x;
+                    const distanceToPlayer = Math.abs(directionX);
+
+                    // Only move if the distance exceeds the follow threshold
+                    const FOLLOW_THRESHOLD = 50; // Minimum distance to maintain
+                    if (distanceToPlayer > FOLLOW_THRESHOLD) {
+                        const normalizedDirectionX = directionX > 0 ? 1 : -1;
+                        this.sprite.setVelocityX(normalizedDirectionX * this.speed);
+
+                        // Flip sprite based on direction
+                        this.sprite.setFlipX(normalizedDirectionX < 0);
+                    } else {
+                        // Stop moving if within the follow threshold
+                        this.sprite.setVelocityX(0);
+                    }
+
+                    // Transition to attack state if close enough
+                    const ATTACK_RANGE = 20; // Distance to trigger attack
+                    if (distanceToPlayer < ATTACK_RANGE) {
+                        this.stateMachine.setState("attack");
+                }
+            } else {
+                console.error("Player object or its position is undefined");
+            }
+        },
+        loop: true,
+        });*/
     }
 
     protected attackOnEnter() {
@@ -189,8 +224,8 @@ export class EnemyFootman extends BaseEnemy {
         if (directionY < 0) {
             // Player is above, frog hop
             this.sprite.setVelocity(
-                normalizedDirectionX * SPEED,
-                normalizedDirectionY * SPEED * 2
+                normalizedDirectionX * SPEED*2,
+                normalizedDirectionY * SPEED
             );
         } else {
             this.sprite.setVelocity(normalizedDirectionX * SPEED, 0);
@@ -250,13 +285,15 @@ export class EnemyFootman extends BaseEnemy {
         return this.scene.data.get("player") as Phaser.Physics.Matter.Sprite;
     }
 
-    public destroy() {
+    public destroy() 
+    {
         this.sprite.destroy();
         EventBus.off("projectile-hit", this.onEnemyHurt);
         EventBus.off("player-hurt", this.onPlayerHurt);
     }
 
-    update(deltaTime: number) {
+    update(deltaTime: number) 
+    {
         const player = this.getPlayer();
         if (
             player &&
@@ -288,7 +325,6 @@ export class EnemyFootman extends BaseEnemy {
         this.stateMachine.update(deltaTime);
     }
 }
-
 
 
 

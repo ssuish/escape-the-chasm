@@ -7,12 +7,12 @@ import { levelObjectives } from "../logic/LevelObjectives";
 // Import all levels dynamically
 //const levels = require(`../levels/${}`);
 
-export class LevelSelection extends Scene {
+export class LevelSelection3 extends Scene {
     selectedLevelKey: string | null = null;
     levelManager: LevelManager;
 
     constructor() {
-        super("LevelSelection");
+        super("LevelSelection3");
     }
 
     preload(){
@@ -31,19 +31,19 @@ export class LevelSelection extends Scene {
             }
         }
         this.levelManager = new LevelManager(this, this.cameras.main.centerX, this.cameras.main.centerY);
-        this.levelManager.drawLevelPortrait('level1'); // Display level1 by default
+        this.levelManager.drawLevelPortrait('level3'); // Display level2 by default
         
         new BackButton(this, 15, 10, () => {
-            this.changeScene("MainMenu");
+            this.changeScene("LevelSelection2");
         });
 
         new NextLevelButton(this, 850, 10, () => 
         {
-            this.changeScene("LevelSelection2");
+            this.changeScene("LevelSelection4");
         });
 
         new PlayButton(this, 512, 530, () => {
-            this.changeScene('Level1');
+            this.changeScene('Level3');
         }).setOrigin(0.5).setDepth(1000);
 
         EventBus.emit("current-scene-ready", this);
