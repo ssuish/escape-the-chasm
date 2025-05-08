@@ -5,7 +5,6 @@ import AvatarCard from "../components/layout/AvatarCard";
 import { Avatar } from "../types/Avatar";
 import UserAccount from "../components/layout/UserAccount";
 import { useAvatars } from "../hooks/useAvatars";
-import { usePlayerCheck } from "../hooks/usePlayerCheck";
 
 const CharacterSelect: React.FC = () => {
   const [selectedCharacter, setSelectedCharacter] = useState<number | null>(
@@ -13,7 +12,6 @@ const CharacterSelect: React.FC = () => {
   );
   const { isConnected, activeAddress } = useWalletConnection();
   const { avatars, loading, error: fetchError } = useAvatars();
-  const { checkingWallet } = usePlayerCheck(activeAddress);
 
   const handleSelect = (id: number) => {
     setSelectedCharacter(id);
@@ -22,16 +20,6 @@ const CharacterSelect: React.FC = () => {
   // If not connected or still checking, don't render the page content
   if (!isConnected || !activeAddress) {
     return null;
-  }
-
-  if (checkingWallet) {
-    return (
-      <div className="flex items-center justify-center h-screen bg-black">
-        <div className="text-white text-xl font-['Alexandria']">
-          Checking player profile...
-        </div>
-      </div>
-    );
   }
 
   // If not connected, don't render the page content
