@@ -49,18 +49,6 @@ const CharacterSelect: React.FC = () => {
   );
   const { isConnected, activeAddress } = useWalletConnection();
 
-   const [modal, setModal] = useState(false);
-
-  const toggleModal = () => {
-     setModal(!modal);
-  };
-
-  if (modal) {
-     document.body.classList.add("overflow-y-hidden");
-  } else {
-     document.body.classList.remove("overflow-y-hidden");
-  }
-
   const handleSelect = (id: number) => {
     setSelectedCharacter(id);
   };
@@ -117,18 +105,8 @@ const CharacterSelect: React.FC = () => {
           <p className="font-['Alexandria'] text-5xl font-extrabold pb-3">
             {avatars.find((a) => a.id === selectedCharacter)?.name}
           </p>
-          <button
-            className="bg-[#4CAF50] px-5 py-3 border-none rounded-md cursor-pointer mt-1 text-2xl font-['Alexandria'] 
-            font-extrabold hover:opacity-75 border-b-5 border-green-900"
-            onClick={toggleModal}
-          >
-            NEXT
-          </button>
+          <UserAccount />
         </div>
-      )}
-
-      {modal && (
-        <UserAccount />
       )}
     </div>
   );
