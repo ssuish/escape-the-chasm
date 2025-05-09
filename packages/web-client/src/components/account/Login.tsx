@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import styles from "../hero/Hero.module.css";
 import { FaPlay } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import useWalletConnection from "../../hooks/useWalletConnection";
