@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import styles from "../hero/Hero.module.css";
+import { useEffect } from "react";
 import { FaPlay } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import useWalletConnection from "../../hooks/useWalletConnection";
@@ -35,10 +34,13 @@ function Login() {
   }
 
   return (
-    <div className={styles.loginContainer}>
+    <div>
       {!isConnected && connectionStatus !== "connecting" && (
-        <div className={styles.connectButtonContainer}>
-          <button className={styles.button} onClick={connectWallet}>
+        <div className="py-5">
+          <button className="flex items-center justify-center w-[300px] bg-[#4379D5] text-white font-['Alexandria'] 
+            font-bold py-2 px-4 rounded-lg hover:bg-[#3a6bb0] transition duration-300 ease-in-out 
+            transform hover:scale-105 shadow-lg"
+            onClick={connectWallet}>
             <FaPlay style={{ marginRight: 10 }} />
             Connect Account
           </button>
@@ -46,8 +48,11 @@ function Login() {
       )}
 
       {isConnected && (
-        <div className={styles.playButtonContainer}>
-          <button className={styles.button} onClick={handlePlay}>
+        <div className="py-5">
+          <button className="flex items-center justify-center w-[300px] bg-[#4379D5] text-white font-['Alexandria'] 
+            font-bold py-2 px-4 rounded-lg hover:bg-[#3a6bb0] transition duration-300 ease-in-out 
+            transform hover:scale-105 shadow-lg"
+            onClick={handlePlay}>
             <FaPlay style={{ height: 20 }} />
             Play as {activeAddress.slice(0, 6)}...{activeAddress.slice(-4)}
           </button>
@@ -55,8 +60,11 @@ function Login() {
       )}
 
       {connectionStatus === "connecting" && (
-        <div className={styles.connectingMessage}>
-          <button className={styles.button} onClick={handlePlay}>
+        <div className="py-5">
+          <button className="flex items-center justify-center w-[300px] bg-[#4379D5] text-white font-['Alexandria'] 
+            font-bold py-2 px-4 rounded-lg hover:bg-[#3a6bb0] transition duration-300 ease-in-out 
+            transform hover:scale-105 shadow-lg"
+            onClick={handlePlay}>
             <FaPlay style={{ height: 20 }} />
             Connecting...
           </button>

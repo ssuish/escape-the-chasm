@@ -2,8 +2,7 @@
     width: 100vw;
     height: 100vh;
     padding: 30px 50px;
-    scroll-snap-align: center;
-    scroll-behavior: smooth;
+
     background-color:black;
     position: relative;
 }

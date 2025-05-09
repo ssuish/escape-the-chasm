@@ -1,4 +1,3 @@
-import "./App.css";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Onboarding from "./pages/Onboarding";
 import Level from "./pages/Level";
