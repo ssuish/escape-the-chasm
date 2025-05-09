@@ -7,8 +7,6 @@ body.activemodal {
     display: block;
     background-color: black;
     padding: 50px;
-    scroll-snap-align: start;
-    scroll-behavior: smooth;
 }
 
 .logo {

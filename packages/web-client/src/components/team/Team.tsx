@@ -35,7 +35,7 @@ const devTeam = [
 const Team = () => {
     return (
         <>
-            <div className="flex flex-col w-screen h-screen px-[50px] py-[30px] snap-center scroll-smooth bg-linear-to-b from-black to-gray">
+            <div className="flex flex-col w-screen h-screen px-[50px] py-[30px] bg-linear-to-b from-black to-gray">
                 <div className="font-['Alexandria'] font-bold text-2xl left-0 right-0 top-0 bottom-0">
                     <h1>Development Team</h1>
                 </div>

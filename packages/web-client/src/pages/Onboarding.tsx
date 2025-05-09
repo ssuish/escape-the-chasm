@@ -1,9 +1,8 @@
-import Hero from '../components/hero/Hero';
-import About from '../components/about/About';
+import Hero from '../components/Hero';
+import About from '../components/About';
 import Footer from '../components/footer/Footer';
 import Roadmap from '../components/roadmap/Roadmap';
 import Team from '../components/team/Team';
-import Mechanics from '../components/mechanics/Mechanics';
 import Backstory from '../components/backstory/Backstory';
 
 const Onboarding = () => {
@@ -11,7 +10,6 @@ const Onboarding = () => {
         <>
             <Hero />
             <About />
-            <Mechanics />
             <Backstory />
             <Roadmap />
             <Team />
