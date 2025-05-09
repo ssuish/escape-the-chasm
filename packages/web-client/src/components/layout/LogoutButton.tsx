@@ -9,7 +9,7 @@ const LogoutButton: React.FC = () => {
     disconnectActiveWallet();
   };
 
-  return <BtnAccount label="Log Out" onClick={handleLogout} />;
+  return <BtnAccount onClick={handleLogout} />;
 };
 
 export default LogoutButton;

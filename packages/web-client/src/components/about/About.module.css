@@ -22,6 +22,7 @@
     font-size: 18px;
     display: flex;
     line-height: 2;
+    
 }
 
 @media (max-width: 1366px) {
@@ -43,7 +44,5 @@
     }
 }
 
-.video {
-    padding-left: 50px;
-}
+
 
