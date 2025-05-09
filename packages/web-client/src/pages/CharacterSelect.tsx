@@ -22,7 +22,6 @@ const CharacterSelect: React.FC = () => {
     return null;
   }
 
-  
   // If not connected, don't render the page content
   if (!isConnected || !activeAddress) {
     return null;
